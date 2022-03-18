@@ -6,34 +6,34 @@
 #returns {grossPay, netPay, calculated Fed, Calculated Social Security, calculated Medicare, calculated state.}
 
 def calculate_net_pay(gp, hr, hw, fwp, sswp, mwp, swp):
-    calculated_data = {}
+    calculated_data = []
     calcFed = gp * (fwp / 100)
     calcSS = gp * (sswp / 100)
     calcMed = gp * (mwp / 100)
     calcSt = gp * (swp / 100)
     netPay = gp - (calcFed + calcSS + calcMed + calcSt)
 
-    calculated_data = {gp, netPay, calcFed, calcSS, calcMed, calcSt}
+    calculated_data = [gp, netPay, calcFed, calcSS, calcMed, calcSt]
     return calculated_data
 
 def calculate_deduction(gp, deduction_code, dp, dv):
-    calculated_data = {}
+    calculated_data = []
 
     #if the fixed deduction value "dv" is > gp set calculated deduction = gp
     if dv > gp:
         calculated_deduction = gp
         #for the sake of data preservation dv is set to gp
         dv = gp
-        calculated_data = {gp, deduction_code, dp, dv}
+        calculated_data = [gp, deduction_code, dp, dv]
         return calculated_data
     # if deduction code is set to N meaning no deduction
     if deduction_code == 'N':
-        calculated_data = {gp, deduction_code, dp, dv}
+        calculated_data = [gp, deduction_code, dp, dv]
         return calculated_data
     #If deduction code is set to F meaning a fixed deduction
     if deduction_code == 'F':
         calculated_deduction = gp - dv
-        calculated_data = {calculated_deduction, deduction_code, dp, dv}
+        calculated_data = [calculated_deduction, deduction_code, dp, dv]
         return calculated_data
     #If deduction code is set to P meaning a percentage deduction
     #NOTE this also handles extra deductions if present.
@@ -51,9 +51,10 @@ def calculate_deduction(gp, deduction_code, dp, dv):
         # then set the deduction equal to the gross pay supplied to prevent
         # user owing money for labor provided.
         if calculated_deduction > gp:
-            calculated_data = {calculated_deduction. deduction_code, dp, dv}
+            calculated_data = [calculated_deduction. deduction_code, dp, dv]
             return calculated_data
 
-        calculated_data = {calculated_deduction, deduction_code, dp, dv}
+        calculated_data = [calculated_deduction, deduction_code, dp, dv]
         return calculated_data
 
+#def calculate_invoice():
