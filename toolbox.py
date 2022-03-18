@@ -15,7 +15,7 @@ def calculate_net_pay(gp, hr, hw, fwp, sswp, mwp, swp):
 
     calculated_data = [gp, netPay, calcFed, calcSS, calcMed, calcSt]
     return calculated_data
-
+#test
 def calculate_deduction(gp, deduction_code, dp, dv):
     calculated_data = []
 
